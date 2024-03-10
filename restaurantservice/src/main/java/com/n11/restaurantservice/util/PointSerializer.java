@@ -3,7 +3,7 @@ package com.n11.restaurantservice.util;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import org.springframework.data.solr.core.geo.Point;
+import org.springframework.data.geo.Point;
 
 import java.io.IOException;
 

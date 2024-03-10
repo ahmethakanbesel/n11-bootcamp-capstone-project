@@ -5,6 +5,9 @@ import com.n11.restaurantservice.enums.RestaurantType;
 import com.n11.restaurantservice.exception.ResourceNotFoundException;
 import com.n11.restaurantservice.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
+import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -42,19 +45,16 @@ public class RestaurantService {
     }
 
     public List<Restaurant> findNearbyByType(RestaurantType type, double latitude, double longitude, double distance) {
-        Assert.notNull(type, "Type must not be null");
-        Assert.isTrue(latitude >= -90 && latitude <= 90, "Latitude must be between -90 and 90");
-        Assert.isTrue(longitude >= -180 && longitude <= 180, "Longitude must be between -180 and 180");
-        Assert.isTrue(distance > 0, "Distance must be positive");
+        Point location = new Point(latitude, longitude);
+        Distance d = new Distance(distance, Metrics.KILOMETERS);
 
-        return restaurantRepository.findNearbyByType(type, latitude, longitude, distance);
+        return restaurantRepository.findNearbyByType(type, location, d);
     }
 
     public List<Restaurant> findNearby(double latitude, double longitude, double distance) {
-        Assert.isTrue(latitude >= -90 && latitude <= 90, "Latitude must be between -90 and 90");
-        Assert.isTrue(longitude >= -180 && longitude <= 180, "Longitude must be between -180 and 180");
-        Assert.isTrue(distance > 0, "Distance must be positive");
+        Point location = new Point(latitude, longitude);
+        Distance d = new Distance(distance, Metrics.KILOMETERS);
 
-        return restaurantRepository.findNearby(latitude, longitude, distance);
+        return restaurantRepository.findNearby(location, d);
     }
 }
