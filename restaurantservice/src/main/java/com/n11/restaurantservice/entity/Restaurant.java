@@ -1,7 +1,8 @@
 package com.n11.restaurantservice.entity;
 
-import com.n11.restaurantservice.enums.RestaurantType;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.n11.restaurantservice.common.BaseEntity;
+import com.n11.restaurantservice.enums.RestaurantType;
 import com.n11.restaurantservice.util.PointSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,12 +11,9 @@ import lombok.Setter;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
-//import org.springframework.data.solr.core.geo.Point;
 import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.Score;
 import org.springframework.data.solr.core.mapping.SolrDocument;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

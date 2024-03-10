@@ -1,6 +1,5 @@
 package com.n11.restaurantservice.request;
 
-import com.n11.restaurantservice.entity.Restaurant;
 import com.n11.restaurantservice.enums.RestaurantType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.hibernate.validator.constraints.Range;
@@ -21,12 +20,12 @@ public record CreateRestaurantRequest(
 
         @NotNull(message = "Latitude is mandatory")
         @Range(min = -90, max = 90)
-        @Schema(description = "Latitude for the restaurant's location", example = "40.7128")
+        @Schema(description = "Latitude for the restaurant's location", example = "40.1128")
         Double latitude,
 
         @NotNull(message = "Longitude is mandatory")
         @Range(min = -180, max = 180)
-        @Schema(description = "Longitude for the restaurant's location", example = "-74.0060")
+        @Schema(description = "Longitude for the restaurant's location", example = "-74.0660")
         Double longitude
 ) {
 }
