@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends SolrCrudRepository<Restaurant, String> {
-    List<Restaurant> findByName(String name);
+    List<Restaurant> findByNameContaining(String name);
 
     //@Query("type:?0 AND _query_:\"{!geofilt sfield=location pt=?1,?2 d=?3}\"")
     //List<Restaurant> findNearbyByType(RestaurantType type, double latitude, double longitude, double distance);

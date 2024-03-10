@@ -1,7 +1,7 @@
 package com.n11.restaurantservice.entity;
 
 import com.n11.restaurantservice.enums.RestaurantType;
-import com.n11.restaurantservice.general.BaseEntity;
+import com.n11.restaurantservice.common.BaseEntity;
 import com.n11.restaurantservice.util.PointSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

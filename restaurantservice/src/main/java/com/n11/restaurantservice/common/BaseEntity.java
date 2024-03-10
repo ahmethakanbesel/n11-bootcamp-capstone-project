@@ -1,4 +1,4 @@
-package com.n11.restaurantservice.general;
+package com.n11.restaurantservice.common;
 
 import lombok.Getter;
 import lombok.Setter;
