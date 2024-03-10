@@ -20,12 +20,12 @@ public record UpdateRestaurantRequest(
 
         @NotNull
         @Range(min = -90, max = 90)
-        @Schema(description = "Latitude for the restaurant's location", example = "40.7128")
+        @Schema(description = "Latitude for the restaurant's location", example = "39.925533")
         double latitude,
 
         @NotNull
         @Range(min = -180, max = 180)
-        @Schema(description = "Longitude for the restaurant's location", example = "-74.0060")
+        @Schema(description = "Longitude for the restaurant's location", example = "32.866287")
         double longitude
 ) {
 }

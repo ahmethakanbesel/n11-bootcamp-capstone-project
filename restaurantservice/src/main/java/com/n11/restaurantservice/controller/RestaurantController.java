@@ -56,12 +56,12 @@ public class RestaurantController {
             @RequestParam("latitude")
             @NotNull @DecimalMin("-90.0")
             @DecimalMax("90.0")
-            @Schema(description = "Latitude for the restaurant's location", example = "40.7128", required = true)
+            @Schema(description = "Latitude for the restaurant's location", example = "39.925533", required = true)
             Double latitude,
             @RequestParam("longitude")
             @NotNull
             @DecimalMin("-180.0")
-            @Schema(description = "Longitude for the restaurant's location", example = "-74.0060", required = true)
+            @Schema(description = "Longitude for the restaurant's location", example = "32.866287", required = true)
             @DecimalMax("180.0")
             Double longitude,
             @RequestParam("distance")
