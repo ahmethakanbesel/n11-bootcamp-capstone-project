@@ -11,7 +11,7 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 import org.springframework.data.solr.core.geo.Point;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-@SolrDocument(collection = "restaurant")
+@SolrDocument(collection = "restaurants")
 @Getter
 @Setter
 public class Restaurant extends BaseEntity {
