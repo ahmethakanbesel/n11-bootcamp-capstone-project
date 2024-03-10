@@ -12,6 +12,7 @@ import com.n11.restaurantservice.service.entityservice.RestaurantEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.geo.Point;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.*;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/restaurants")
 @RequiredArgsConstructor
+@Validated
 public class RestaurantController {
     private final RestaurantControllerContract restaurantControllerContract;
 
@@ -50,7 +52,7 @@ public class RestaurantController {
     public ResponseEntity<List<RestaurantDTO>> getRestaurantsByName(
             @RequestParam("name")
             @NotBlank(message = "Name cannot be blank")
-            @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+            @Size(min = 3, max = 63, message = "Name must be between 3 and 63 characters")
             String name
     ) {
         List<RestaurantDTO> restaurants = restaurantControllerContract.getRestaurantsByName(name);

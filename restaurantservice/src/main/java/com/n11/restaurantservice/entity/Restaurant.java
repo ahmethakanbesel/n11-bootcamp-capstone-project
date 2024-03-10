@@ -17,6 +17,10 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @SolrDocument(collection = "restaurants")
 @Getter
 @Setter
@@ -29,21 +33,22 @@ public class Restaurant extends BaseEntity {
     private String id;
 
     @Field
+    @NotBlank(message = "Name cannot be blank")
+    @Size(min = 3, max = 63, message = "Name must be between 3 and 63 characters")
     @Indexed(name = "name", type = "string")
     private String name;
 
     @Field
+    @NotBlank(message = "Type cannot be blank")
     @Indexed(name = "type", type = "string")
     private RestaurantType type;
 
     @Field
+    @NotNull(message = "Location cannot be null")
     @Indexed(type = "location")
     @JsonSerialize(using = PointSerializer.class)
     private Point location;
 
     @Score
     private Float score;
-
-    @Field("location_str")
-    private String locationString;
 }
