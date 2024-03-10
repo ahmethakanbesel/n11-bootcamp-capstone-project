@@ -44,7 +44,8 @@ public class RestaurantEntityService extends BaseEntityService<Restaurant, Resta
     public List<Restaurant> findNearby(double latitude, double longitude, double distance) {
         Point location = new Point(latitude, longitude);
         Distance d = new Distance(distance, Metrics.KILOMETERS);
+        Sort sort = Sort.by(Sort.Direction.ASC, "score");
 
-        return restaurantRepository.findNearby(location, d);
+        return restaurantRepository.findNearby(location, d, sort);
     }
 }
