@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  solr:
+    image: solr:9.5.0-slim
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./data:/var/solr
+    command:
+      - solr-precreate
+      - restaurants
+volumes:
+  data:
