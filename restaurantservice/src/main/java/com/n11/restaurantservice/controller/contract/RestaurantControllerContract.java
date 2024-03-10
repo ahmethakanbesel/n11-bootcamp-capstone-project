@@ -1,7 +1,6 @@
 package com.n11.restaurantservice.controller.contract;
 
 import com.n11.restaurantservice.dto.RestaurantDTO;
-import com.n11.restaurantservice.entity.Restaurant;
 import com.n11.restaurantservice.request.CreateRestaurantRequest;
 import com.n11.restaurantservice.request.UpdateRestaurantRequest;
 

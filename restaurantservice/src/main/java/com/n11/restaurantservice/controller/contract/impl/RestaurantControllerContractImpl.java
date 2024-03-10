@@ -8,6 +8,7 @@ import com.n11.restaurantservice.request.CreateRestaurantRequest;
 import com.n11.restaurantservice.request.UpdateRestaurantRequest;
 import com.n11.restaurantservice.service.entityservice.RestaurantEntityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,10 @@ public class RestaurantControllerContractImpl implements RestaurantControllerCon
 
     @Override
     public List<RestaurantDTO> getAllRestaurants(int page, int pageLimit, String sortBy, String sortDir) {
-        return null;
+        Page<Restaurant> restaurants = restaurantEntityService.findAll(page, pageLimit, sortBy, sortDir);
+        return restaurants.stream()
+                .map(RestaurantMapper::convertToRestaurantDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -28,7 +32,7 @@ public class RestaurantControllerContractImpl implements RestaurantControllerCon
         List<Restaurant> restaurants = restaurantEntityService.findNearby(latitude, longitude, distance);
 
         return restaurants.stream()
-                .map(RestaurantMapper::convertToRestaurantDTO)
+                .map(RestaurantMapper::convertToRestaurantDTOWithDistance)
                 .collect(Collectors.toList());
     }
 

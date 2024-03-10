@@ -1,11 +1,11 @@
 package com.n11.restaurantservice.common;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 import com.n11.restaurantservice.exception.ResourceNotFoundException;
 import lombok.Getter;
 import org.springframework.data.solr.repository.SolrCrudRepository;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Getter
 public abstract class BaseEntityService<E extends BaseEntity, R extends SolrCrudRepository<E, String>> {
