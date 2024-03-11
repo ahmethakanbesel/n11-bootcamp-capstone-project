@@ -15,10 +15,10 @@ import java.util.List;
 public class FeignClientConfig {
 
     @Value("${restaurant-service.url}")
-    private String productServiceUrl;
+    private String restaurantServiceUrl;
 
     @Bean
-    public RestaurantClient productClient() {
+    public RestaurantClient restaurantClient() {
         return new RestaurantClient() {
             @Override
             public RestResponse<List<RestaurantDTO>> getNearbyRestaurants(Double latitude, Double longitude, Double distance) {

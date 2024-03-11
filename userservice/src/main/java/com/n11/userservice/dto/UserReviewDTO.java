@@ -5,7 +5,7 @@ import com.n11.userservice.enums.ReviewScore;
 public record UserReviewDTO(
         Long id,
         Long userId,
-        Long restaurantId,
+        String restaurantId,
         ReviewScore score,
         String review
 ) {

@@ -38,7 +38,7 @@ public class UserReview extends BaseEntity {
     private User user;
 
     @Column(name = "restaurant_id", nullable = false)
-    private Long restaurantId;
+    private String restaurantId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "score", nullable = false)
@@ -46,4 +46,14 @@ public class UserReview extends BaseEntity {
 
     @Column(name = "comment")
     private String comment;
+
+    public double toNumericScore() {
+        return switch (score) {
+            case ONE -> 1.0;
+            case TWO -> 2.0;
+            case THREE -> 3.0;
+            case FOUR -> 4.0;
+            case FIVE -> 5.0;
+        };
+    }
 }
