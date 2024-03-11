@@ -6,6 +6,7 @@ import com.n11.userservice.dto.UserDTO;
 import com.n11.userservice.request.CreateUserRequest;
 import com.n11.userservice.request.UpdateUserRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -34,28 +35,37 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "Create a user")
-    public ResponseEntity<RestResponse<UserDTO>> createUser(@Valid @RequestBody CreateUserRequest request) {
+    public ResponseEntity<RestResponse<UserDTO>> createUser(
+            @Valid @RequestBody CreateUserRequest request
+    ) {
         UserDTO user = userControllerContract.createUser(request);
         return ResponseEntity.ok(RestResponse.of(user));
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a user")
-    public ResponseEntity<RestResponse<UserDTO>> updateUser(@Positive @PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
+    public ResponseEntity<RestResponse<UserDTO>> updateUser(
+            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id,
+            @Valid @RequestBody UpdateUserRequest request
+    ) {
         UserDTO user = userControllerContract.updateUser(id, request);
         return ResponseEntity.ok(RestResponse.of(user));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    public ResponseEntity<RestResponse<Void>> deleteUser(@Positive @PathVariable Long id) {
+    public ResponseEntity<RestResponse<Void>> deleteUser(
+            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id)
+    {
         userControllerContract.deleteUser(id);
         return ResponseEntity.ok(RestResponse.of(null));
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a user by id")
-    public ResponseEntity<RestResponse<UserDTO>> getUser(@Positive @PathVariable Long id) {
+    public ResponseEntity<RestResponse<UserDTO>> getUser(
+            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id
+    ) {
         UserDTO user = userControllerContract.getUser(id);
         return ResponseEntity.ok(RestResponse.of(user));
     }

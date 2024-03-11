@@ -8,6 +8,7 @@ import com.n11.userservice.request.CreateUserReviewRequest;
 import com.n11.userservice.request.UpdateReviewCommentRequest;
 import com.n11.userservice.request.UpdateReviewScoreRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
@@ -38,7 +39,9 @@ public class UserReviewController {
 
     @PostMapping
     @Operation(summary = "Create a review")
-    public ResponseEntity<RestResponse<UserReviewDTO>> createReview(@Valid @RequestBody CreateUserReviewRequest request) {
+    public ResponseEntity<RestResponse<UserReviewDTO>> createReview(
+            @Valid @RequestBody CreateUserReviewRequest request
+    ) {
         UserReviewDTO review = userReviewControllerContract.createUserReview(request);
         return ResponseEntity.ok(RestResponse.of(review));
     }
@@ -46,7 +49,7 @@ public class UserReviewController {
     @PatchMapping("/{id}/comment")
     @Operation(summary = "Update a review's comment")
     public ResponseEntity<RestResponse<UserReviewDTO>> updateReviewComment(
-            @Positive @PathVariable Long id,
+            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id,
             @Valid @RequestBody UpdateReviewCommentRequest request
     ) {
         UserReviewDTO review = userReviewControllerContract.updateReviewComment(id, request);
@@ -56,7 +59,7 @@ public class UserReviewController {
     @PatchMapping("/{id}/score")
     @Operation(summary = "Update a review's score")
     public ResponseEntity<RestResponse<UserReviewDTO>> updateReviewScore(
-            @Positive @PathVariable Long id,
+            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id,
             @Valid @RequestBody UpdateReviewScoreRequest request
     ) {
         UserReviewDTO review = userReviewControllerContract.updateReviewScore(id, request);
@@ -65,14 +68,23 @@ public class UserReviewController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a review")
-    public ResponseEntity<RestResponse<Void>> deleteReview(@Positive @PathVariable Long id) {
+    public ResponseEntity<RestResponse<Void>> deleteReview(
+            @Positive
+            @PathVariable
+            @Schema(description = "User id", example = "100")
+            Long id
+    ) {
         userReviewControllerContract.deleteUserReview(id);
         return ResponseEntity.ok(RestResponse.of(null));
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a review by id")
-    public ResponseEntity<RestResponse<UserReviewDTO>> getReview(@Positive @PathVariable Long id) {
+    public ResponseEntity<RestResponse<UserReviewDTO>> getReview(
+            @Positive
+            @PathVariable
+            @Schema(description = "User id", example = "100") Long id
+    ) {
         UserReviewDTO review = userReviewControllerContract.getUserReview(id);
         return ResponseEntity.ok(RestResponse.of(review));
     }

@@ -33,7 +33,9 @@ public class RecommendationController {
     @GetMapping("/with-user/{userId}")
     @Operation(summary = "Get recommended restaurants by user id")
     public ResponseEntity<RestResponse<List<RecommendationDTO>>> getRecommendationsWithUser(
-            @Positive Long userId,
+            @Positive
+            @Schema(description = "User id", example = "100")
+            Long userId,
             @RequestParam("distance")
             @NotNull
             @DecimalMin("0.1")
