@@ -9,6 +9,8 @@ import com.n11.userservice.exceptions.ResourceNotFoundException;
 import com.n11.userservice.service.entityservice.UserEntityService;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "recommendations", cacheManager = "recommendationsCacheManager")
 public class RecommendationService {
     private final UserEntityService userEntityService;
     private final UserReviewEntityService userReviewEntityService;
@@ -47,6 +50,7 @@ public class RecommendationService {
         return getRecommendedRestaurantsByLocation(user.get().getLatitude(), user.get().getLongitude(), distance);
     }
 
+    @Cacheable(value = "recommendations", key = "#latitude + ';' + #longitude + ';' + #distance", unless = "#result == null or #result.size() == 0")
     public List<RecommendationDTO> getRecommendedRestaurantsByLocation(Double latitude, Double longitude, Double distance) {
         if (distance == null) {
             distance = 10.0;
