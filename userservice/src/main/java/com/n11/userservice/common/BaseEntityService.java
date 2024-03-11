@@ -2,6 +2,10 @@ package com.n11.userservice.common;
 
 import com.n11.userservice.exceptions.ItemNotFoundException;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -35,13 +39,9 @@ public abstract class BaseEntityService<E extends BaseEntity, R extends JpaRepos
         return entity;
     }
 
-    public List<E> findAll(int page, int pageLimit, String sortBy, String sortDir) {
-        /*
-        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
-        Pageable pageable = PageRequest.of(page, pageLimit, sort);
-        return repository.findAllPWithPageable(pageable);*/
-        return repository.findAll();
+    public Page<E> findAll(int page, int size, String sortBy, String sortDir) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDir), sortBy));
+        return repository.findAll(pageable);
     }
 
     public E findByIdWithControl(Long id) {

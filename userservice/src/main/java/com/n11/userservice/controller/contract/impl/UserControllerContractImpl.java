@@ -9,9 +9,11 @@ import com.n11.userservice.request.UpdateUserRequest;
 import com.n11.userservice.service.entityservice.UserEntityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -36,7 +38,8 @@ public class UserControllerContractImpl implements UserControllerContract {
 
     @Override
     public List<UserDTO> getAllUsers(int page, int pageLimit, String sortBy, String sortDir) {
-        List<User> users = userEntityService.findAll(page, pageLimit, sortBy, sortDir);
+        Page<User> users = userEntityService.findAll(page, pageLimit, sortBy, sortDir);
+
         return UserMapper.INSTANCE.convertToUserDTOList(users);
     }
 

@@ -14,6 +14,7 @@ import com.n11.userservice.service.entityservice.UserEntityService;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class UserReviewContractImpl implements UserReviewControllerContract {
 
     @Override
     public List<UserReviewDTO> getAllReviews(int page, int pageLimit, String sortBy, String sortDir) {
-        List<UserReview> reviews = userReviewEntityService.findAll(page, pageLimit, sortBy, sortDir);
+        Page<UserReview> reviews = userReviewEntityService.findAll(page, pageLimit, sortBy, sortDir);
         return UserReviewMapper.INSTANCE.convertToUserReviewDTOList(reviews);
     }
 

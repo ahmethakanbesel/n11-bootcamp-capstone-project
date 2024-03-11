@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface UserReviewMapper {
     @Mapping(source = "user.id", target = "userId")
     UserReviewDTO convertToUserReviewDTO(UserReview userReview);
 
-    List<UserReviewDTO> convertToUserReviewDTOList(List<UserReview> reviews);
+    List<UserReviewDTO> convertToUserReviewDTOList(Page<UserReview> reviews);
 }
 

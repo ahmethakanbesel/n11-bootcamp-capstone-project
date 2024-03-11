@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface UserMapper {
 
     UserDTO convertToUserDTO(User user);
 
-    List<UserDTO> convertToUserDTOList(List<User> users);
+    List<UserDTO> convertToUserDTOList(Page<User> users);
 
     @Mapping(target = "id", ignore = true)
     void updateUserFields(@MappingTarget User user, UpdateUserRequest request);
