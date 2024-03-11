@@ -8,6 +8,7 @@ import com.n11.userservice.request.UpdateUserRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,21 +41,21 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a user")
-    public ResponseEntity<RestResponse<UserDTO>> updateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
+    public ResponseEntity<RestResponse<UserDTO>> updateUser(@Positive @PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
         UserDTO user = userControllerContract.updateUser(id, request);
         return ResponseEntity.ok(RestResponse.of(user));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    public ResponseEntity<RestResponse<Void>> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<RestResponse<Void>> deleteUser(@Positive @PathVariable Long id) {
         userControllerContract.deleteUser(id);
         return ResponseEntity.ok(RestResponse.of(null));
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a user by id")
-    public ResponseEntity<RestResponse<UserDTO>> getUser(@PathVariable Long id) {
+    public ResponseEntity<RestResponse<UserDTO>> getUser(@Positive @PathVariable Long id) {
         UserDTO user = userControllerContract.getUser(id);
         return ResponseEntity.ok(RestResponse.of(user));
     }
