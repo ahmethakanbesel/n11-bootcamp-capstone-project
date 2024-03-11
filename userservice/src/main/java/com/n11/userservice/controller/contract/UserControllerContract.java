@@ -3,7 +3,6 @@ package com.n11.userservice.controller.contract;
 import com.n11.userservice.dto.UserDTO;
 import com.n11.userservice.request.CreateUserRequest;
 import com.n11.userservice.request.UpdateUserRequest;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.n11.userservice.controller.contract;
 
 import com.n11.userservice.dto.RecommendationDTO;
-import com.n11.userservice.dto.RestaurantDTO;
 
 import java.util.List;
 

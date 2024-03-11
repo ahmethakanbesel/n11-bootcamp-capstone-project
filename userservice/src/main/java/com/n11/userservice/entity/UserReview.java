@@ -1,7 +1,7 @@
 package com.n11.userservice.entity;
 
-import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.common.BaseEntity;
+import com.n11.userservice.enums.ReviewScore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

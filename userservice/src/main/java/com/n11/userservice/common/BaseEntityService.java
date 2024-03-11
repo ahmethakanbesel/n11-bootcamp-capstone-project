@@ -1,12 +1,12 @@
 package com.n11.userservice.common;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
 import com.n11.userservice.exceptions.ItemNotFoundException;
 import lombok.Getter;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Getter
 public abstract class BaseEntityService<E extends BaseEntity, R extends JpaRepository<E, Long>> {

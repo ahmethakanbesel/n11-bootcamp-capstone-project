@@ -1,12 +1,12 @@
 package com.n11.userservice.controller.contract.impl;
 
+import com.n11.userservice.common.GeneralErrorMessage;
 import com.n11.userservice.controller.contract.UserReviewControllerContract;
 import com.n11.userservice.dto.UserReviewDTO;
 import com.n11.userservice.entity.User;
 import com.n11.userservice.entity.UserReview;
 import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.exceptions.BadRequestException;
-import com.n11.userservice.common.GeneralErrorMessage;
 import com.n11.userservice.mapper.UserReviewMapper;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import com.n11.userservice.service.entityservice.UserEntityService;

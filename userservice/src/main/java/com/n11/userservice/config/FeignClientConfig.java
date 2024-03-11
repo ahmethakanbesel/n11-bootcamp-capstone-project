@@ -4,10 +4,8 @@ import com.n11.userservice.client.RestaurantClient;
 import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.dto.RestaurantDTO;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 

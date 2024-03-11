@@ -1,16 +1,15 @@
 package com.n11.userservice.entity;
 
-import com.n11.userservice.enums.UserStatus;
 import com.n11.userservice.common.BaseEntity;
+import com.n11.userservice.enums.UserStatus;
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
+
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor

@@ -3,7 +3,6 @@ package com.n11.userservice.controller;
 import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.controller.contract.RecommendationControllerContract;
 import com.n11.userservice.dto.RecommendationDTO;
-import com.n11.userservice.dto.RestaurantDTO;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

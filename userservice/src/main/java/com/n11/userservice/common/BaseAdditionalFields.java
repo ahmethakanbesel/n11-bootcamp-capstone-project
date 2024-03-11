@@ -1,9 +1,10 @@
 package com.n11.userservice.common;
 
 import jakarta.persistence.Embeddable;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Embeddable
 @Getter

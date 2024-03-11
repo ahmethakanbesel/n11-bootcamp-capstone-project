@@ -1,11 +1,8 @@
 package com.n11.userservice.request;
 
-import com.n11.userservice.enums.UserStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Range;
-
 
 import java.time.LocalDate;
 

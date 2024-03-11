@@ -1,9 +1,9 @@
 package com.n11.userservice.controller;
 
+import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.controller.contract.UserReviewControllerContract;
 import com.n11.userservice.dto.UserReviewDTO;
 import com.n11.userservice.enums.ReviewScore;
-import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;

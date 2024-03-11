@@ -1,8 +1,8 @@
 package com.n11.userservice.controller;
 
+import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.controller.contract.UserControllerContract;
 import com.n11.userservice.dto.UserDTO;
-import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.request.CreateUserRequest;
 import com.n11.userservice.request.UpdateUserRequest;
 import jakarta.validation.Valid;

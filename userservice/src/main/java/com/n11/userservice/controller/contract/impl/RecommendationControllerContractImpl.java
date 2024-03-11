@@ -2,7 +2,6 @@ package com.n11.userservice.controller.contract.impl;
 
 import com.n11.userservice.controller.contract.RecommendationControllerContract;
 import com.n11.userservice.dto.RecommendationDTO;
-import com.n11.userservice.dto.RestaurantDTO;
 import com.n11.userservice.service.RecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

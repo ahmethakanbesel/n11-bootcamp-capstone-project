@@ -11,8 +11,9 @@ import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
