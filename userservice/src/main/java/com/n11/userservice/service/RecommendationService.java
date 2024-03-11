@@ -25,7 +25,7 @@ public class RecommendationService {
     public List<RecommendationDTO> getRecommendedRestaurantsByUserId(Long userId, Double distance) {
         Optional<User> user = userEntityService.findById(userId);
         if (user.isEmpty()) {
-            throw new ResourceNotFoundException("User", "id", userId);
+            throw new ResourceNotFoundException("User", "id", userId.toString());
         }
 
         return getRecommendedRestaurantsByLocation(user.get().getLatitude(), user.get().getLongitude(), distance);
@@ -46,7 +46,7 @@ public class RecommendationService {
         for (RestaurantDTO restaurant : restaurants) {
             List<UserReview> reviews = userReviewEntityService.findByRestaurantId(restaurant.id());
 
-            // TODO: should we take into account the user reviews if there are no reviews?
+            // NOTE: should we take into account the user reviews if there are no reviews?
             double averageUserScore = reviews.stream().mapToDouble(UserReview::toNumericScore).average().orElse(0.0);
 
             RecommendationDTO recommendation = getRecommendationDTO(restaurant, averageUserScore);
@@ -63,7 +63,7 @@ public class RecommendationService {
         double distanceScore = 1.0 / (restaurant.distance() + 1);
         double weightedScore = averageUserScore * 0.7 + distanceScore * 0.3;
 
-        RecommendationDTO recommendation = new RecommendationDTO(
+        return new RecommendationDTO(
                 restaurant.id(),
                 restaurant.name(),
                 restaurant.type(),
@@ -72,7 +72,5 @@ public class RecommendationService {
                 averageUserScore,
                 weightedScore
         );
-
-        return recommendation;
     }
 }

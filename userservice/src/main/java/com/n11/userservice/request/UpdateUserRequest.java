@@ -29,7 +29,7 @@ public record UpdateUserRequest(
         String email,
 
         @NotBlank(message = "Phone number is mandatory")
-        @Pattern(regexp = "^[+]?[0-9]{10,15}$", message = "Phone number is not valid")
+        @Pattern(regexp = "^[+]?\\d{10,15}$", message = "Phone number is not valid")
         @Schema(description = "User's phone number", example = "+1234567890")
         String phoneNumber,
 

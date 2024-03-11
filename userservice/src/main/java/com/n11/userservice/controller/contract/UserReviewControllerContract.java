@@ -1,7 +1,6 @@
 package com.n11.userservice.controller.contract;
 
 import com.n11.userservice.dto.UserReviewDTO;
-import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import com.n11.userservice.request.UpdateReviewCommentRequest;
 import com.n11.userservice.request.UpdateReviewScoreRequest;
