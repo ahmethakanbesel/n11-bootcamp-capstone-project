@@ -14,7 +14,7 @@ public record CreateRestaurantRequest(
         @Schema(description = "Restaurant's name", example = "Ocakbaşı Restaurant")
         String name,
 
-        @NotBlank(message = "Type cannot be blank")
+        @NotNull(message = "Type cannot be null")
         @Schema(description = "Restaurant's type", example = "TURKISH")
         RestaurantType type,
 
