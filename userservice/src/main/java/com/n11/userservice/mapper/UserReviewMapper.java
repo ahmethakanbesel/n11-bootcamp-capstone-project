@@ -4,6 +4,7 @@ import com.n11.userservice.dto.UserReviewDTO;
 import com.n11.userservice.entity.UserReview;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -15,6 +16,7 @@ public interface UserReviewMapper {
 
     UserReview convertToUserReview(CreateUserReviewRequest request);
 
+    @Mapping(source = "user.id", target = "userId")
     UserReviewDTO convertToUserReviewDTO(UserReview userReview);
 
     List<UserReviewDTO> convertToUserReviewDTOList(List<UserReview> reviews);

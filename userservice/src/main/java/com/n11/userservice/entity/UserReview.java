@@ -37,6 +37,12 @@ public class UserReview extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
+    /*
+    NOTE: If we want to decouple the user and the review, we can use the following field instead of the above one.
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+    */
+
     @Column(name = "restaurant_id", nullable = false)
     private String restaurantId;
 

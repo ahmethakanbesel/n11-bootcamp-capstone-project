@@ -9,6 +9,8 @@ public record RestaurantDTO(
         @Schema(description = "Restaurant's type", example = "TURKISH")
         String type,
         LocationDTO location,
+
+        @Schema(description = "Distance from the user's/given location", example = "5.0")
         Float distance
 ) {
 }
