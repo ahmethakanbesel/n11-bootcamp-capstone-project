@@ -49,7 +49,7 @@ public class UserReviewController {
     @PatchMapping("/{id}/comment")
     @Operation(summary = "Update a review's comment")
     public ResponseEntity<RestResponse<UserReviewDTO>> updateReviewComment(
-            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id,
+            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id,
             @Valid @RequestBody UpdateReviewCommentRequest request
     ) {
         UserReviewDTO review = userReviewControllerContract.updateReviewComment(id, request);
@@ -59,7 +59,7 @@ public class UserReviewController {
     @PatchMapping("/{id}/score")
     @Operation(summary = "Update a review's score")
     public ResponseEntity<RestResponse<UserReviewDTO>> updateReviewScore(
-            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id,
+            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id,
             @Valid @RequestBody UpdateReviewScoreRequest request
     ) {
         UserReviewDTO review = userReviewControllerContract.updateReviewScore(id, request);
@@ -71,7 +71,7 @@ public class UserReviewController {
     public ResponseEntity<RestResponse<Void>> deleteReview(
             @Positive
             @PathVariable
-            @Schema(description = "User id", example = "100")
+            @Schema(description = "User id", example = "100", type = "number")
             Long id
     ) {
         userReviewControllerContract.deleteUserReview(id);
@@ -83,7 +83,7 @@ public class UserReviewController {
     public ResponseEntity<RestResponse<UserReviewDTO>> getReview(
             @Positive
             @PathVariable
-            @Schema(description = "User id", example = "100") Long id
+            @Schema(description = "User id", example = "100", type = "number") Long id
     ) {
         UserReviewDTO review = userReviewControllerContract.getUserReview(id);
         return ResponseEntity.ok(RestResponse.of(review));

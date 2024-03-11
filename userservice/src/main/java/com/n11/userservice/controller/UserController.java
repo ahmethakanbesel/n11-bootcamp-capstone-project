@@ -45,7 +45,7 @@ public class UserController {
     @PutMapping("/{id}")
     @Operation(summary = "Update a user")
     public ResponseEntity<RestResponse<UserDTO>> updateUser(
-            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id,
+            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id,
             @Valid @RequestBody UpdateUserRequest request
     ) {
         UserDTO user = userControllerContract.updateUser(id, request);
@@ -55,7 +55,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
     public ResponseEntity<RestResponse<Void>> deleteUser(
-            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id)
+            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id)
     {
         userControllerContract.deleteUser(id);
         return ResponseEntity.ok(RestResponse.of(null));
@@ -64,7 +64,7 @@ public class UserController {
     @GetMapping("/{id}")
     @Operation(summary = "Get a user by id")
     public ResponseEntity<RestResponse<UserDTO>> getUser(
-            @Positive @PathVariable @Schema(description = "User id", example = "100") Long id
+            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id
     ) {
         UserDTO user = userControllerContract.getUser(id);
         return ResponseEntity.ok(RestResponse.of(user));

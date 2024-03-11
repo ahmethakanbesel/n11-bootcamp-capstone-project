@@ -39,8 +39,8 @@ public class RecommendationController {
             @RequestParam("distance")
             @NotNull
             @DecimalMin("0.1")
-            @DecimalMax("100.0")
-            @Schema(description = "Distance in kilometers", example = "5.0")
+            @DecimalMax("10.0")
+            @Schema(description = "Distance in kilometers", example = "5.0", type = "number")
             Double distance
     ) {
         List<RecommendationDTO> restaurants = recommendationControllerContract.getRecommendedRestaurantsByUserId(userId, distance);
@@ -53,19 +53,19 @@ public class RecommendationController {
             @RequestParam("latitude")
             @NotNull @DecimalMin("-90.0")
             @DecimalMax("90.0")
-            @Schema(description = "Latitude", example = "39.925533")
+            @Schema(description = "Latitude", example = "39.925533", type = "number")
             Double latitude,
             @RequestParam("longitude")
             @NotNull
             @DecimalMin("-180.0")
-            @Schema(description = "Longitude", example = "32.866287")
+            @Schema(description = "Longitude", example = "32.866287", type = "number")
             @DecimalMax("180.0")
             Double longitude,
             @RequestParam("distance")
             @NotNull
             @DecimalMin("0.1")
-            @DecimalMax("100.0")
-            @Schema(description = "Distance in kilometers", example = "5.0")
+            @DecimalMax("10.0")
+            @Schema(description = "Distance in kilometers", example = "5.0", type = "number")
             Double distance
     ) {
         List<RecommendationDTO> restaurants = recommendationControllerContract.getRecommendedRestaurantsByLocation(latitude, longitude, distance);
