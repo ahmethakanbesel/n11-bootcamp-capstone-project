@@ -56,11 +56,11 @@ public class User extends BaseEntity {
     private LocalDate birthDate;
 
     @Column(name = "latitude", nullable = false)
-    @Range(min=-90, max=90)
+    @Range(min = -90, max = 90)
     private Double latitude;
 
     @Column(name = "longitude", nullable = false)
-    @Range(min=-180, max=180)
+    @Range(min = -180, max = 180)
     private Double longitude;
 
     @Enumerated(EnumType.STRING)

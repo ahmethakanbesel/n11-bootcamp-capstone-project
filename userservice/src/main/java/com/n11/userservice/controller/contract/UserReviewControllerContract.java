@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface UserReviewControllerContract {
     List<UserReviewDTO> getAllReviews(int page, int pageLimit, String sortBy, String sortDir);
+
     UserReviewDTO createUserReview(CreateUserReviewRequest request);
 
     UserReviewDTO getUserReview(Long id);

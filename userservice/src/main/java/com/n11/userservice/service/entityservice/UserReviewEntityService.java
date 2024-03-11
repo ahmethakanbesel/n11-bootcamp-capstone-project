@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class UserReviewEntityService extends BaseEntityService<UserReview, UserReviewRepository> {
     private final UserReviewRepository repository;
+
     protected UserReviewEntityService(UserReviewRepository repository) {
         super(repository);
         this.repository = repository;

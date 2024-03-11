@@ -22,6 +22,22 @@ public class RecommendationService {
     private final UserReviewEntityService userReviewEntityService;
     private final RestaurantClient restaurantClient;
 
+    private static RecommendationDTO getRecommendationDTO(RestaurantDTO restaurant, double averageUserScore) {
+        // to avoid division by zero, we add 1 to the distance
+        double distanceScore = 1.0 / (restaurant.distance() + 1);
+        double weightedScore = averageUserScore * 0.7 + distanceScore * 0.3;
+
+        return new RecommendationDTO(
+                restaurant.id(),
+                restaurant.name(),
+                restaurant.type(),
+                restaurant.location(),
+                restaurant.distance(),
+                averageUserScore,
+                weightedScore
+        );
+    }
+
     public List<RecommendationDTO> getRecommendedRestaurantsByUserId(Long userId, Double distance) {
         Optional<User> user = userEntityService.findById(userId);
         if (user.isEmpty()) {
@@ -56,21 +72,5 @@ public class RecommendationService {
         // return sorted recommendations
         recommendations.sort((r1, r2) -> Double.compare(r2.weightedScore(), r1.weightedScore()));
         return recommendations;
-    }
-
-    private static RecommendationDTO getRecommendationDTO(RestaurantDTO restaurant, double averageUserScore) {
-        // to avoid division by zero, we add 1 to the distance
-        double distanceScore = 1.0 / (restaurant.distance() + 1);
-        double weightedScore = averageUserScore * 0.7 + distanceScore * 0.3;
-
-        return new RecommendationDTO(
-                restaurant.id(),
-                restaurant.name(),
-                restaurant.type(),
-                restaurant.location(),
-                restaurant.distance(),
-                averageUserScore,
-                weightedScore
-        );
     }
 }

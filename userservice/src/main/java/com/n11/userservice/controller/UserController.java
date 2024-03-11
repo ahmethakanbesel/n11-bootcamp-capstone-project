@@ -55,8 +55,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
     public ResponseEntity<RestResponse<Void>> deleteUser(
-            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id)
-    {
+            @Positive @PathVariable @Schema(description = "User id", example = "100", type = "number") Long id) {
         userControllerContract.deleteUser(id);
         return ResponseEntity.ok(RestResponse.of(null));
     }

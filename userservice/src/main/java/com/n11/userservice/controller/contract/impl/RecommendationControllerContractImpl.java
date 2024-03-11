@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecommendationControllerContractImpl implements RecommendationControllerContract {
     private final RecommendationService recommendationService;
+
     @Override
     public List<RecommendationDTO> getRecommendedRestaurantsByUserId(Long userId, Double distance) {
         return recommendationService.getRecommendedRestaurantsByUserId(userId, distance);
