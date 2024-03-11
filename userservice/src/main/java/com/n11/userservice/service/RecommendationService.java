@@ -41,6 +41,7 @@ public class RecommendationService {
         );
     }
 
+    @Cacheable(value = "recommendations", key = "#userId + ';' + #distance", unless = "#result == null or #result.size() == 0")
     public List<RecommendationDTO> getRecommendedRestaurantsByUserId(Long userId, Double distance) {
         Optional<User> user = userEntityService.findById(userId);
         if (user.isEmpty()) {
