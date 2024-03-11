@@ -20,6 +20,7 @@ public class CacheConfig {
 
     @Bean
     public CacheManager recommendationsCacheManager(RedisConnectionFactory redisConnectionFactory) {
+        // cache duration is set to 5 seconds for testing purposes
         Duration expiration = Duration.ofSeconds(5);
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(expiration);
         return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(redisConnectionFactory).cacheDefaults(config).build();
