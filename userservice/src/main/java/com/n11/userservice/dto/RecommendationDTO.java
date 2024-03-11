@@ -9,13 +9,13 @@ public record RecommendationDTO(
         @Schema(description = "Restaurant's type", example = "TURKISH")
         String type,
         LocationDTO location,
-        @Schema(description = "Distance from the user's/given location", example = "5.0")
+        @Schema(description = "Distance from the user's/given location", example = "5.0", type = "number")
         Float distance,
 
-        @Schema(description = "User's score for the restaurant [0, 5]", example = "4.5")
+        @Schema(description = "User's score for the restaurant [0, 5]", example = "4.5", type = "number")
         Double userScore,
 
-        @Schema(description = "Weighted score for the restaurant (70% user reviews, 30% distance from the location)", example = "4.0")
+        @Schema(description = "Weighted score for the restaurant (70% user reviews, 30% distance from the location)", example = "4.0", type = "number")
         Double weightedScore
 ) {
 }

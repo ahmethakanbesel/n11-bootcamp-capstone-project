@@ -17,9 +17,9 @@ public record UserDTO(
         String email,
         @Schema(description = "User's birth date", example = "1990-01-01")
         LocalDate birthDate,
-        @Schema(description = "Latitude for the user's location", example = "39.925593")
+        @Schema(description = "Latitude for the user's location", example = "39.925593", type = "number")
         Double latitude,
-        @Schema(description = "Longitude for the user's location", example = "32.866237")
+        @Schema(description = "Longitude for the user's location", example = "32.866237", type = "number")
         Double longitude,
         @Schema(description = "User's phone number", example = "+1234567890")
         String phoneNumber,
