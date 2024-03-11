@@ -3,6 +3,8 @@ package com.n11.userservice.controller.contract;
 import com.n11.userservice.dto.UserReviewDTO;
 import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.request.CreateUserReviewRequest;
+import com.n11.userservice.request.UpdateReviewCommentRequest;
+import com.n11.userservice.request.UpdateReviewScoreRequest;
 
 import java.util.List;
 
@@ -12,9 +14,9 @@ public interface UserReviewControllerContract {
 
     UserReviewDTO getUserReview(Long id);
 
-    UserReviewDTO updateReviewComment(Long id, String comment);
+    UserReviewDTO updateReviewComment(Long id, UpdateReviewCommentRequest request);
 
-    UserReviewDTO updateReviewScore(Long id, ReviewScore score);
+    UserReviewDTO updateReviewScore(Long id, UpdateReviewScoreRequest request);
 
     void deleteUserReview(Long id);
 }

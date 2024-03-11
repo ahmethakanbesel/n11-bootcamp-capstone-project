@@ -3,6 +3,8 @@ package com.n11.userservice.controller;
 import com.n11.userservice.common.RestResponse;
 import com.n11.userservice.controller.contract.RecommendationControllerContract;
 import com.n11.userservice.dto.RecommendationDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -19,11 +21,13 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/recommendations", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Recommendations", description = "The Recommendation API")
 public class RecommendationController {
 
     private final RecommendationControllerContract recommendationControllerContract;
 
     @GetMapping("/with-user/{userId}")
+    @Operation(summary = "Get recommended restaurants by user id")
     public ResponseEntity<RestResponse<List<RecommendationDTO>>> getRecommendationsWithUser(
             @Positive Long userId,
             @RequestParam Double distance
@@ -33,6 +37,7 @@ public class RecommendationController {
     }
 
     @GetMapping("/with-location")
+    @Operation(summary = "Get recommended restaurants by location")
     public ResponseEntity<RestResponse<List<RecommendationDTO>>> getRecommendationsWithLocation(
             @RequestParam Double latitude,
             @RequestParam Double longitude,

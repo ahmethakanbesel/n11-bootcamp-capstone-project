@@ -9,6 +9,8 @@ import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.exceptions.BadRequestException;
 import com.n11.userservice.mapper.UserReviewMapper;
 import com.n11.userservice.request.CreateUserReviewRequest;
+import com.n11.userservice.request.UpdateReviewCommentRequest;
+import com.n11.userservice.request.UpdateReviewScoreRequest;
 import com.n11.userservice.service.entityservice.UserEntityService;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import lombok.RequiredArgsConstructor;
@@ -50,17 +52,17 @@ public class UserReviewContractImpl implements UserReviewControllerContract {
     }
 
     @Override
-    public UserReviewDTO updateReviewComment(Long id, String comment) {
+    public UserReviewDTO updateReviewComment(Long id, UpdateReviewCommentRequest request) {
         UserReview review = userReviewEntityService.findByIdWithControl(id);
-        review.setComment(comment);
+        review.setComment(request.comment());
         review = userReviewEntityService.save(review);
         return UserReviewMapper.INSTANCE.convertToUserReviewDTO(review);
     }
 
     @Override
-    public UserReviewDTO updateReviewScore(Long id, ReviewScore score) {
+    public UserReviewDTO updateReviewScore(Long id, UpdateReviewScoreRequest request) {
         UserReview review = userReviewEntityService.findByIdWithControl(id);
-        review.setScore(score);
+        review.setScore(request.score());
         review = userReviewEntityService.save(review);
         return UserReviewMapper.INSTANCE.convertToUserReviewDTO(review);
     }
