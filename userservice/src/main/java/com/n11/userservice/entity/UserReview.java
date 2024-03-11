@@ -13,7 +13,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_reviews")
+@Table(
+        name = "user_reviews",
+        indexes = {
+                @Index(columnList = "user_id"),
+                @Index(columnList = "restaurant_id"),
+        }
+)
 public class UserReview extends BaseEntity {
     @Id
     @Column(nullable = false, updatable = false)
