@@ -1,7 +1,10 @@
 package com.n11.userservice.data;
 
+import com.n11.userservice.dto.UserDTO;
 import com.n11.userservice.entity.User;
 import com.n11.userservice.enums.UserStatus;
+import com.n11.userservice.mapper.UserMapper;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -41,5 +44,9 @@ public class UserData {
             users.add(newUser);
         }
         return users;
+    }
+
+    public static UserDTO userDTO() {
+        return UserMapper.INSTANCE.convertToUserDTO(user());
     }
 }
