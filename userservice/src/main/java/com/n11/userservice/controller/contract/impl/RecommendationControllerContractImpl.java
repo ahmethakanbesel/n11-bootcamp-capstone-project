@@ -2,6 +2,8 @@ package com.n11.userservice.controller.contract.impl;
 
 import com.n11.userservice.controller.contract.RecommendationControllerContract;
 import com.n11.userservice.dto.RecommendationDTO;
+import com.n11.userservice.entity.Recommendation;
+import com.n11.userservice.mapper.RecommendationMapper;
 import com.n11.userservice.service.RecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,11 +17,13 @@ public class RecommendationControllerContractImpl implements RecommendationContr
 
     @Override
     public List<RecommendationDTO> getRecommendedRestaurantsByUserId(Long userId, Double distance) {
-        return recommendationService.getRecommendedRestaurantsByUserId(userId, distance);
+        List<Recommendation> recommendations = recommendationService.getRecommendedRestaurantsByUserId(userId, distance);
+        return RecommendationMapper.INSTANCE.convertToRecommendationDTOList(recommendations);
     }
 
     @Override
     public List<RecommendationDTO> getRecommendedRestaurantsByLocation(Double latitude, Double longitude, Double distance) {
-        return recommendationService.getRecommendedRestaurantsByLocation(latitude, longitude, distance);
+        List<Recommendation> recommendations = recommendationService.getRecommendedRestaurantsByLocation(latitude, longitude, distance);
+        return RecommendationMapper.INSTANCE.convertToRecommendationDTOList(recommendations);
     }
 }
