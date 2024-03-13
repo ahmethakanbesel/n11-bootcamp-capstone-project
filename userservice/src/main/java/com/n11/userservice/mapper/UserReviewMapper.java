@@ -17,7 +17,8 @@ public interface UserReviewMapper {
 
     UserReview convertToUserReview(CreateUserReviewRequest request);
 
-    @Mapping(source = "user.id", target = "userId")
+    // Uncomment the following line if you are using join column in the entity
+    // @Mapping(source = "user.id", target = "userId")
     UserReviewDTO convertToUserReviewDTO(UserReview userReview);
 
     List<UserReviewDTO> convertToUserReviewDTOList(Page<UserReview> reviews);
