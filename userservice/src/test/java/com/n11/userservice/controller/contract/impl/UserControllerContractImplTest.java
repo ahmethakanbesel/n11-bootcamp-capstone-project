@@ -1,12 +1,10 @@
 package com.n11.userservice.controller.contract.impl;
 
 import com.n11.userservice.data.UserData;
-import com.n11.userservice.dto.RecommendationDTO;
 import com.n11.userservice.dto.UserDTO;
 import com.n11.userservice.entity.User;
 import com.n11.userservice.request.CreateUserRequest;
 import com.n11.userservice.request.UpdateUserRequest;
-import com.n11.userservice.service.RecommendationService;
 import com.n11.userservice.service.entityservice.UserEntityService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +12,6 @@ import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -32,7 +29,7 @@ public class UserControllerContractImplTest {
     private ArgumentCaptor<User> userArgumentCaptor;
 
     @Test
-    void shouldReturnAllUsers(){
+    void shouldReturnAllUsers() {
         // given
         int page = 0;
         int size = 10;
@@ -66,7 +63,7 @@ public class UserControllerContractImplTest {
     }
 
     @Test
-    void shouldReturnUserById(){
+    void shouldReturnUserById() {
         // given
         Long id = 100L;
         User expectedUser = UserData.user();
@@ -88,7 +85,7 @@ public class UserControllerContractImplTest {
     }
 
     @Test
-    void shouldUpdateUser(){
+    void shouldUpdateUser() {
         // given
         Long id = 100L;
         User expectedUser = UserData.user();
@@ -124,7 +121,7 @@ public class UserControllerContractImplTest {
     }
 
     @Test
-    void shouldDeleteUser(){
+    void shouldDeleteUser() {
         // given
         Long id = 100L;
 

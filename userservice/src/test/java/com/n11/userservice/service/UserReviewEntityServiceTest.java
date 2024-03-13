@@ -1,8 +1,5 @@
 package com.n11.userservice.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import com.n11.userservice.entity.User;
 import com.n11.userservice.entity.UserReview;
 import com.n11.userservice.enums.ReviewScore;
@@ -19,6 +16,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserReviewEntityServiceTest {

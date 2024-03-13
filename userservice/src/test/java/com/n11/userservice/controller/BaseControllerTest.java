@@ -2,12 +2,11 @@ package com.n11.userservice.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.UnsupportedEncodingException;
-
 import com.n11.userservice.common.RestResponse;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.io.UnsupportedEncodingException;
 
 public class BaseControllerTest {
     protected ObjectMapper objectMapper;

@@ -59,8 +59,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
@@ -80,8 +80,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn();
 
@@ -101,8 +101,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn();
 
@@ -122,8 +122,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn();
 
@@ -143,8 +143,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn();
 
@@ -164,8 +164,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
@@ -182,8 +182,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/reviews/100/score")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
@@ -200,8 +200,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/reviews/100/score")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn();
 
@@ -218,8 +218,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/reviews/999/score")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn();
 
@@ -236,8 +236,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(request);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/reviews/100/comment")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
@@ -250,8 +250,8 @@ class ReviewControllerTest extends BaseControllerTest {
         String payload = objectMapper.writeValueAsString(null);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/reviews/100/comment")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(payload))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn();
 

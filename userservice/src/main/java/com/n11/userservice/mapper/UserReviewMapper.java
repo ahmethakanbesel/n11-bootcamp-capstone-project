@@ -4,7 +4,6 @@ import com.n11.userservice.dto.UserReviewDTO;
 import com.n11.userservice.entity.UserReview;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;

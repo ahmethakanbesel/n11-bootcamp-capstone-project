@@ -1,7 +1,6 @@
 package com.n11.userservice.controller.contract.impl;
 
 import com.n11.userservice.data.RecommendationData;
-import com.n11.userservice.dto.LocationDTO;
 import com.n11.userservice.dto.RecommendationDTO;
 import com.n11.userservice.entity.Recommendation;
 import com.n11.userservice.service.RecommendationService;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

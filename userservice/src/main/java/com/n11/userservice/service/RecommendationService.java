@@ -1,8 +1,6 @@
 package com.n11.userservice.service;
 
 import com.n11.userservice.client.RestaurantClient;
-import com.n11.userservice.common.N11BusinessException;
-import com.n11.userservice.dto.RecommendationDTO;
 import com.n11.userservice.dto.RestaurantDTO;
 import com.n11.userservice.entity.Recommendation;
 import com.n11.userservice.entity.User;

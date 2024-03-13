@@ -1,6 +1,5 @@
 package com.n11.userservice.controller;
 
-import com.codahale.metrics.MetricRegistryListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.n11.userservice.UserServiceApplication;

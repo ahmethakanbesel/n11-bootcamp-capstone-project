@@ -7,7 +7,6 @@ import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import com.n11.userservice.request.UpdateReviewCommentRequest;
 import com.n11.userservice.request.UpdateReviewScoreRequest;
-import com.n11.userservice.service.entityservice.UserEntityService;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
