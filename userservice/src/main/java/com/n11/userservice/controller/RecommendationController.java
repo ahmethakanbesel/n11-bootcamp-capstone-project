@@ -27,10 +27,10 @@ public class RecommendationController {
 
     private final RecommendationControllerContract recommendationControllerContract;
 
-    @GetMapping("/with-user/{userId}")
+    @GetMapping("/with-user")
     @Operation(summary = "Get recommended restaurants by user id")
     public ResponseEntity<RestResponse<List<RecommendationDTO>>> getRecommendationsWithUser(
-            @PathVariable
+            @RequestParam("userId")
             @Positive
             @Schema(description = "User id", example = "100")
             Long userId,
