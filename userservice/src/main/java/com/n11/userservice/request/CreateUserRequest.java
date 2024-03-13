@@ -39,12 +39,12 @@ public record CreateUserRequest(
 
         @NotNull(message = "Latitude is mandatory")
         @Range(min = -90, max = 90)
-        @Schema(description = "Latitude for the user's location", example = "40.7128")
+        @Schema(description = "Latitude for the user's location", example = "39.925593")
         Double latitude,
 
         @NotNull(message = "Longitude is mandatory")
         @Range(min = -180, max = 180)
-        @Schema(description = "Longitude for the user's location", example = "-74.0060")
+        @Schema(description = "Longitude for the user's location", example = "32.866237")
         Double longitude
 ) {
 }
