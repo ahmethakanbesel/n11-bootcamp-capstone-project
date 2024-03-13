@@ -17,10 +17,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(
-        name = "users",
-        indexes = {
-                @Index(columnList = "username"),
-        }
+        name = "users"
 )
 public class User extends BaseEntity {
     @Id
