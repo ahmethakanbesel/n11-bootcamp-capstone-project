@@ -3,6 +3,8 @@ package com.n11.userservice.common;
 import com.n11.userservice.exceptions.BadRequestException;
 import com.n11.userservice.exceptions.ItemNotFoundException;
 import com.n11.userservice.exceptions.ResourceNotFoundException;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -44,7 +46,7 @@ public class GeneralControllerAdvice extends ResponseEntityExceptionHandler {
         var generalErrorMessages = new GeneralErrorMessages(LocalDateTime.now(), message, description);
         var restResponse = RestResponse.error(generalErrorMessages);
 
-        return new ResponseEntity<>(restResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(restResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler
@@ -67,5 +69,38 @@ public class GeneralControllerAdvice extends ResponseEntityExceptionHandler {
         var restResponse = RestResponse.error(generalErrorMessages);
 
         return new ResponseEntity<>(restResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleRTExceptions(DataIntegrityViolationException e, WebRequest request) {
+        String message = e.getMessage();
+        String description = request.getDescription(false);
+
+        var generalErrorMessages = new GeneralErrorMessages(LocalDateTime.now(), message, description);
+        var restResponse = RestResponse.error(generalErrorMessages);
+
+        return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleRTExceptions(ConstraintViolationException e, WebRequest request) {
+        String message = e.getMessage();
+        String description = request.getDescription(false);
+
+        var generalErrorMessages = new GeneralErrorMessages(LocalDateTime.now(), message, description);
+        var restResponse = RestResponse.error(generalErrorMessages);
+
+        return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleRTEExceptions(jakarta.validation.ConstraintViolationException e, WebRequest request) {
+        String message = e.getMessage();
+        String description = request.getDescription(false);
+
+        var generalErrorMessages = new GeneralErrorMessages(LocalDateTime.now(), message, description);
+        var restResponse = RestResponse.error(generalErrorMessages);
+
+        return new ResponseEntity<>(restResponse, HttpStatus.BAD_REQUEST);
     }
 }
