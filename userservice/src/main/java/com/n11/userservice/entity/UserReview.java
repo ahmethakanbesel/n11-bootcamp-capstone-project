@@ -18,6 +18,7 @@ import lombok.Setter;
         indexes = {
                 @Index(columnList = "user_id"),
                 @Index(columnList = "restaurant_id"),
+                @Index(columnList = "user_id, restaurant_id", unique = true)
         }
 )
 public class UserReview extends BaseEntity {
@@ -35,19 +36,13 @@ public class UserReview extends BaseEntity {
     )
     private Long id;
 
-    /*
-    Hence this case study does not mention a relation between an order and a review,
-    I assume that a user can review a restaurant without making an order at most once.
-     */
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
+    // NOTE: This relationship couples the user and review entities. It is a good idea to avoid this kind of coupling.
+    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    // @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    // private User user;
 
-    /*
-    NOTE: If we want to decouple the user and the review, we can use the following field instead of the above one.
     @Column(name = "user_id", nullable = false)
     private Long userId;
-    */
 
     @Column(name = "restaurant_id", nullable = false)
     private String restaurantId;

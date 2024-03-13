@@ -25,7 +25,6 @@ import java.util.Optional;
 @Slf4j
 public class UserReviewContractImpl implements UserReviewControllerContract {
     private final UserReviewEntityService userReviewEntityService;
-    private final UserEntityService userEntityService;
 
     @Override
     public List<UserReviewDTO> getAllReviews(int page, int pageLimit, String sortBy, String sortDir) {
@@ -36,12 +35,7 @@ public class UserReviewContractImpl implements UserReviewControllerContract {
     @Override
     public UserReviewDTO createUserReview(CreateUserReviewRequest request) {
         UserReview review = UserReviewMapper.INSTANCE.convertToUserReview(request);
-        Optional<User> user = userEntityService.findById(request.userId());
-        if (user.isEmpty()) {
-            throw new BadRequestException(GeneralErrorMessage.USER_NOT_FO2UND);
-        }
-        review.setUser(user.get());
-        review = userReviewEntityService.save(review);
+        review = userReviewEntityService.saveWithUserControl(review);
         return UserReviewMapper.INSTANCE.convertToUserReviewDTO(review);
     }
 
