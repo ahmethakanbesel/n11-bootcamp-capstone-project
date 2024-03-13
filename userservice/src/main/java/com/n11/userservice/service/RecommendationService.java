@@ -1,6 +1,7 @@
 package com.n11.userservice.service;
 
 import com.n11.userservice.client.RestaurantClient;
+import com.n11.userservice.common.N11BusinessException;
 import com.n11.userservice.dto.RecommendationDTO;
 import com.n11.userservice.dto.RestaurantDTO;
 import com.n11.userservice.entity.Recommendation;
@@ -26,10 +27,20 @@ public class RecommendationService {
     private final UserReviewEntityService userReviewEntityService;
     private final RestaurantClient restaurantClient;
 
-    private static Recommendation createRecommendationInstance(RestaurantDTO restaurant, double averageUserScore) {
+    protected static double calculateWeightedScore(double averageUserScore, double distance) {
+        if (averageUserScore < 0) {
+            throw new IllegalArgumentException("averageUserScore cannot be negative");
+        }
+        if (distance < 0) {
+            throw new IllegalArgumentException("distance cannot be negative");
+        }
         // to avoid division by zero, we add 1 to the distance
-        double distanceScore = 1.0 / (restaurant.distance() + 1);
-        double weightedScore = averageUserScore * 0.7 + distanceScore * 0.3;
+        double distanceScore = 1.0 / (distance + 1);
+        return averageUserScore * 0.7 + distanceScore * 0.3;
+    }
+
+    protected static Recommendation createRecommendationInstance(RestaurantDTO restaurant, double averageUserScore) {
+        double weightedScore = calculateWeightedScore(averageUserScore, restaurant.distance());
 
         Recommendation recommendation = new Recommendation();
         recommendation.setId(restaurant.id());

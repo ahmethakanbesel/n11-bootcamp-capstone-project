@@ -14,5 +14,7 @@ public interface RecommendationMapper {
 
     RecommendationDTO convertToRecommendationDTO(Recommendation recommendation);
 
+    Recommendation convertToRecommendation(RecommendationDTO recommendationDTO);
+
     List<RecommendationDTO> convertToRecommendationDTOList(List<Recommendation> recommendations);
 }
