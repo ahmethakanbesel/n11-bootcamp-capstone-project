@@ -1,16 +1,12 @@
 package com.n11.userservice.controller.contract.impl;
 
-import com.n11.userservice.common.GeneralErrorMessage;
 import com.n11.userservice.controller.contract.UserReviewControllerContract;
 import com.n11.userservice.dto.UserReviewDTO;
-import com.n11.userservice.entity.User;
 import com.n11.userservice.entity.UserReview;
-import com.n11.userservice.exceptions.BadRequestException;
 import com.n11.userservice.mapper.UserReviewMapper;
 import com.n11.userservice.request.CreateUserReviewRequest;
 import com.n11.userservice.request.UpdateReviewCommentRequest;
 import com.n11.userservice.request.UpdateReviewScoreRequest;
-import com.n11.userservice.service.entityservice.UserEntityService;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UserReviewContractImpl implements UserReviewControllerContract {
+public class UserReviewControllerContractImpl implements UserReviewControllerContract {
     private final UserReviewEntityService userReviewEntityService;
 
     @Override
