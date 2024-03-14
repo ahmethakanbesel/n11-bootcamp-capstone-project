@@ -87,6 +87,6 @@ public class RecommendationService {
 
         // return sorted recommendations
         recommendations.sort((r1, r2) -> Double.compare(r2.getWeightedScore(), r1.getWeightedScore()));
-        return recommendations;
+        return recommendations.subList(0, Math.min(3, recommendations.size()));
     }
 }
