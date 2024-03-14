@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class RestaurantController {
 
     @PostMapping
     @Operation(summary = "Create a restaurant")
-    public ResponseEntity<RestResponse<RestaurantDTO>> createRestaurant(@RequestBody CreateRestaurantRequest request) {
+    public ResponseEntity<RestResponse<RestaurantDTO>> createRestaurant(@Valid @RequestBody CreateRestaurantRequest request) {
         RestaurantDTO restaurant = restaurantControllerContract.createRestaurant(request);
         return ResponseEntity.ok(RestResponse.of(restaurant));
     }
@@ -111,7 +112,7 @@ public class RestaurantController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a restaurant by id")
-    public ResponseEntity<RestResponse<RestaurantDTO>> updateRestaurant(@PathVariable String id, @RequestBody UpdateRestaurantRequest request) {
+    public ResponseEntity<RestResponse<RestaurantDTO>> updateRestaurant(@PathVariable String id, @Valid @RequestBody UpdateRestaurantRequest request) {
         RestaurantDTO restaurant = restaurantControllerContract.updateRestaurant(id, request);
         return ResponseEntity.ok(RestResponse.of(restaurant));
     }

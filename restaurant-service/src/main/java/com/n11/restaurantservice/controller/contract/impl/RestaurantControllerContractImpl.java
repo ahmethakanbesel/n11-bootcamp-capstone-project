@@ -22,9 +22,10 @@ public class RestaurantControllerContractImpl implements RestaurantControllerCon
     @Override
     public List<RestaurantDTO> getAllRestaurants(int page, int pageLimit, String sortBy, String sortDir) {
         Page<Restaurant> restaurants = restaurantEntityService.findAll(page, pageLimit, sortBy, sortDir);
+
         return restaurants.stream()
                 .map(RestaurantMapper::convertToRestaurantDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -33,7 +34,7 @@ public class RestaurantControllerContractImpl implements RestaurantControllerCon
 
         return restaurants.stream()
                 .map(RestaurantMapper::convertToRestaurantDTOWithDistance)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class RestaurantControllerContractImpl implements RestaurantControllerCon
 
         return restaurants.stream()
                 .map(RestaurantMapper::convertToRestaurantDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

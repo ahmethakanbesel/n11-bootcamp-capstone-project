@@ -4,10 +4,11 @@ services:
     image: solr:9.5.0-slim
     ports:
       - "8983:8983"
-    volumes:
-      - ./data:/var/solr
+      # volumes:
+      #- ./data:/var/solr
     command:
       - solr-precreate
       - restaurants
 volumes:
   data:
+  scripts:
