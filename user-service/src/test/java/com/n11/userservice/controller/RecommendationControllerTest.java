@@ -6,6 +6,8 @@ import com.n11.userservice.UserServiceApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,46 +66,13 @@ class RecommendationControllerTest extends BaseControllerTest {
         assertTrue(success);
     }
 
-    @Test
-    void shouldReturnBadRequestErrorWhenDistanceNotInRange() throws Exception {
-        double latitude = 40.7128;
-        double longitude = -74.006;
-        double distance = 15.0;
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/recommendations/with-location")
-                        .param("latitude", String.valueOf(latitude))
-                        .param("longitude", String.valueOf(longitude))
-                        .param("distance", String.valueOf(distance)))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andReturn();
-
-        boolean failure = isFailure(mvcResult);
-        assertTrue(failure);
-    }
-
-    @Test
-    void shouldReturnBadRequestErrorWhenLatitudeNotInRange() throws Exception {
-        double latitude = 95.0;
-        double longitude = -74.006;
-        double distance = 10.0;
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/recommendations/with-location")
-                        .param("latitude", String.valueOf(latitude))
-                        .param("longitude", String.valueOf(longitude))
-                        .param("distance", String.valueOf(distance)))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andReturn();
-
-        boolean failure = isFailure(mvcResult);
-        assertTrue(failure);
-    }
-
-    @Test
-    void shouldReturnBadRequestErrorWhenLongitudeNotInRange() throws Exception {
-        double latitude = 40.7128;
-        double longitude = -190.0;
-        double distance = 10.0;
-
+    @ParameterizedTest
+    @CsvSource({
+            "40.7128, -74.006, 15.0",
+            "95.0, -74.006, 10.0",
+            "40.7128, -190.0, 10.0"
+    })
+    void shouldReturnBadRequestError(double latitude, double longitude, double distance) throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/recommendations/with-location")
                         .param("latitude", String.valueOf(latitude))
                         .param("longitude", String.valueOf(longitude))

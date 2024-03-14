@@ -26,10 +26,10 @@ import java.util.Map;
 @ControllerAdvice
 @RequiredArgsConstructor
 public class GeneralControllerAdvice extends ResponseEntityExceptionHandler {
-    private final KafkaProducerService kafkaProducerService;
     private static final String ERRORS_500_TOPIC = "ERRORS_500";
     private static final String ERRORS_404_TOPIC = "ERRORS_404";
     private static final String ERRORS_400_TOPIC = "ERRORS_400";
+    private final KafkaProducerService kafkaProducerService;
 
     @ExceptionHandler
     public final ResponseEntity<Object> handleAllExceptions(Exception e, WebRequest request) {

@@ -39,8 +39,6 @@ public class UserReview extends BaseEntity {
     // NOTE: This relationship couples the user and review entities. It is a good idea to avoid this kind of coupling.
     // @ManyToOne(fetch = FetchType.LAZY, optional = false)
     // @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    // private User user;
-
     @Column(name = "user_id", nullable = false)
     private Long userId;
 

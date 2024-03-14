@@ -10,6 +10,8 @@ import com.n11.userservice.request.UpdateReviewScoreRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -68,34 +70,18 @@ class ReviewControllerTest extends BaseControllerTest {
         assertTrue(success);
     }
 
-    @Test
-    void shouldNotCreateReviewForExistingUserAndRestaurant() throws Exception {
+    @ParameterizedTest
+    @CsvSource({
+            "100, restaurant-1, FIVE, 'This is a review'",
+            "999, restaurant-1, FIVE, 'This is a review'",
+            "100, '', FIVE, 'This is a review'"
+    })
+    void shouldNotCreateReviewForInvalidInputs(long userId, String restaurantId, ReviewScore score, String reviewText) throws Exception {
         CreateUserReviewRequest request = new CreateUserReviewRequest(
-                100L,
-                "restaurant-1",
-                ReviewScore.FIVE,
-                "This is a review"
-        );
-
-        String payload = objectMapper.writeValueAsString(request);
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(payload))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andReturn();
-
-        boolean success = isFailure(mvcResult);
-        assertTrue(success);
-    }
-
-    @Test
-    void shouldNotCreateReviewWhenUserDoesNotExist() throws Exception {
-        CreateUserReviewRequest request = new CreateUserReviewRequest(
-                999L,
-                "restaurant-1",
-                ReviewScore.FIVE,
-                "This is a review"
+                userId,
+                restaurantId,
+                score,
+                reviewText
         );
 
         String payload = objectMapper.writeValueAsString(request);
@@ -116,27 +102,6 @@ class ReviewControllerTest extends BaseControllerTest {
                 100L,
                 "restaurant-1",
                 null,
-                "This is a review"
-        );
-
-        String payload = objectMapper.writeValueAsString(request);
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/reviews")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(payload))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andReturn();
-
-        boolean success = isFailure(mvcResult);
-        assertTrue(success);
-    }
-
-    @Test
-    void shouldNotCreateReviewWhenRestaurantIdInvalid() throws Exception {
-        CreateUserReviewRequest request = new CreateUserReviewRequest(
-                100L,
-                null,
-                ReviewScore.FIVE,
                 "This is a review"
         );
 

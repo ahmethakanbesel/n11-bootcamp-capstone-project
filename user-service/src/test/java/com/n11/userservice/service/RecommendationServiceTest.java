@@ -10,6 +10,8 @@ import com.n11.userservice.enums.ReviewScore;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -20,8 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-
-public class RecommendationServiceTest {
+class RecommendationServiceTest {
     @Mock
     private RestaurantClient restaurantClient;
 
@@ -31,25 +32,14 @@ public class RecommendationServiceTest {
     @InjectMocks
     private RecommendationService recommendationServiceUnderTest;
 
-    @Test
-    void shouldReturnScoreWhenAverageScoreIsGreaterThanZero() {
-        double averageUserScore = 3.5;
-        double distance = 1;
-        double expectedScore = (averageUserScore * 0.7) + (1.0 / (distance + 1) * 0.3);
-
+    @ParameterizedTest
+    @CsvSource({
+            "3.5, 1, 3.55",
+            "3.5, 1, 3.55",
+            "3.5, 0, 3.85"
+    })
+    void shouldReturnCorrectScore(double averageUserScore, double distance, double expectedScore) {
         double actualScore = RecommendationService.calculateWeightedScore(averageUserScore, distance);
-
-        assertEquals(expectedScore, actualScore);
-    }
-
-    @Test
-    void shouldReturnScoreWhenAverageScoreIsGreaterThanZeroAndDistanceIsGreaterThanZero() {
-        double averageUserScore = 3.5;
-        double distance = 1;
-        double expectedScore = (averageUserScore * 0.7) + (1.0 / (distance + 1) * 0.3);
-
-        double actualScore = RecommendationService.calculateWeightedScore(averageUserScore, distance);
-
         assertEquals(expectedScore, actualScore);
     }
 
@@ -64,16 +54,6 @@ public class RecommendationServiceTest {
         assertEquals(expectedScore, actualScore);
     }
 
-    @Test
-    void shouldReturnScoreWhenAverageScoreIsGreaterThanZeroAndDistanceIsZero() {
-        double averageUserScore = 3.5;
-        double distance = 0;
-        double expectedScore = (averageUserScore * 0.7) + (1.0 / (distance + 1) * 0.3);
-
-        double actualScore = RecommendationService.calculateWeightedScore(averageUserScore, distance);
-
-        assertEquals(expectedScore, actualScore);
-    }
 
     @Test
     void shouldReturnScoreWhenAverageScoreIsZeroAndDistanceIsZero() {

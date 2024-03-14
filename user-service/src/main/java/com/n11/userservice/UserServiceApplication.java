@@ -9,8 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableCaching
 public class UserServiceApplication {
-    //private static final Logger logger = LogManager.getLogger(UserServiceApplication.class);
-
     public static void main(String[] args) {
         SpringApplication.run(UserServiceApplication.class, args);
     }
