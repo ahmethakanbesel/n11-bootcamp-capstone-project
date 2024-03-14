@@ -13,7 +13,7 @@ public class RestaurantMapper {
 
     public static RestaurantDTO convertToRestaurantDTO(Restaurant restaurant) {
         LocationDTO location = new LocationDTO(restaurant.getLocation().getX(), restaurant.getLocation().getY());
-        return new RestaurantDTO(restaurant.getId(), restaurant.getName(), restaurant.getType(), location,null);
+        return new RestaurantDTO(restaurant.getId(), restaurant.getName(), restaurant.getType(), location, null);
     }
 
     public static RestaurantDTO convertToRestaurantDTOWithDistance(Restaurant restaurant) {
