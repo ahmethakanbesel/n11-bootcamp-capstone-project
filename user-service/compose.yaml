@@ -32,6 +32,16 @@ services:
       retries: 5
       start_period: 80s
     restart: on-failure
+  test-database:
+    image: postgres:16-alpine
+    hostname: test-postgres1
+    container_name: test-postgres1
+    environment:
+      POSTGRES_DB: user-service-test
+      POSTGRES_USER: user-service
+      POSTGRES_PASSWORD: service_pass
+    ports:
+      - "5433:5432"
   zoo1:
     image: confluentinc/cp-zookeeper:7.6.0
     hostname: zoo1
