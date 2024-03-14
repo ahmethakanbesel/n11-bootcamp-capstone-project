@@ -33,6 +33,14 @@
 - Unit and integration tests for user service application
 - Validation for all endpoints
 
+## Rooms for improvement
+- Create separate APIs for users, reviews, and recommendations
+- Apply CQRS pattern to services, especially for restaurant service.
+    - Postgres for write operations
+    - Solr for read operations
+- Add more unit and integration tests for restaurant service application
+- gRPC for communication between services might be a better choice than REST
+
 ## How to run
 
 ### Docker
