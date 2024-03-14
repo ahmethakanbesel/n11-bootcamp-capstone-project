@@ -1,4 +1,5 @@
-FROM maven:3.8.5-openjdk-17 AS build
+# Build image
+FROM maven:3.9.6-amazoncorretto-21 AS build
 
 WORKDIR /app
 
@@ -14,14 +15,15 @@ RUN mv src/main/resources/application.properties.docker src/main/resources/appli
 
 RUN mvn package -DskipTests
 
-FROM amazoncorretto:17-alpine3.19
+# Runtime image
+FROM amazoncorretto:21-alpine3.19
 
 WORKDIR /app
 
 ARG APP_VERSION=latest
 
-COPY --from=build /app/target/restaurant-service-${APP_VERSION}.jar /app/restaurant-service.jar
+COPY --from=build /app/target/user-service-${APP_VERSION}.jar /app/user-service.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "restaurant-service.jar"]
+CMD ["java", "-jar", "user-service.jar"]
