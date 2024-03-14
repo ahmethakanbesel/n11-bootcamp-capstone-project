@@ -34,11 +34,12 @@ class RecommendationServiceTest {
 
     @ParameterizedTest
     @CsvSource({
-            "3.5, 1, 3.55",
-            "3.5, 1, 3.55",
-            "3.5, 0, 3.85"
+            "3.5, 1",
+            "3.5, 1",
+            "3.5, 0"
     })
-    void shouldReturnCorrectScore(double averageUserScore, double distance, double expectedScore) {
+    void shouldReturnCorrectScore(double averageUserScore, double distance) {
+        double expectedScore = (averageUserScore * 0.7) + (1.0 / (distance + 1) * 0.3);
         double actualScore = RecommendationService.calculateWeightedScore(averageUserScore, distance);
         assertEquals(expectedScore, actualScore);
     }

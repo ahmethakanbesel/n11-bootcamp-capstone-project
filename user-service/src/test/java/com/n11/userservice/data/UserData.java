@@ -19,7 +19,7 @@ public class UserData {
         user.setBirthDate(LocalDate.now().minusYears(1));
         user.setStatus(UserStatus.ACTIVE);
         user.setEmail("ayse@mail.com");
-        user.setPhoneNumber("1234567890");
+        user.setPhoneNumber("9123456789");
         user.setLatitude(41.0082);
         user.setLongitude(28.9784);
         return user;
@@ -37,7 +37,7 @@ public class UserData {
             newUser.setBirthDate(LocalDate.now().minusYears(1));
             newUser.setStatus(UserStatus.ACTIVE);
             newUser.setEmail("user" + i + "@mail.com");
-            newUser.setPhoneNumber("123456789" + i);
+            newUser.setPhoneNumber("912345678" + i);
             newUser.setLatitude(41.0082 + i);
             newUser.setLongitude(28.9784 + i);
             users.add(newUser);

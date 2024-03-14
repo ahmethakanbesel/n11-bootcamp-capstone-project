@@ -121,7 +121,7 @@ class ReviewControllerTest extends BaseControllerTest {
     void shouldCreateReviewWhenCommentIsNotProvided() throws Exception {
         CreateUserReviewRequest request = new CreateUserReviewRequest(
                 100L,
-                "restaurant-2",
+                "restaurant-99",
                 ReviewScore.FIVE,
                 null
         );

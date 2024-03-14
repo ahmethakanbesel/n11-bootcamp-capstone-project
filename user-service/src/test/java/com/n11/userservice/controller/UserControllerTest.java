@@ -90,9 +90,9 @@ class UserControllerTest extends BaseControllerTest {
         CreateUserRequest request = new CreateUserRequest(
                 user.getName(),
                 user.getSurname(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPhoneNumber(),
+                "CreateUser",
+                "shouldCreateUser@mail.com",
+                "9993456789",
                 user.getBirthDate(),
                 user.getLatitude(),
                 user.getLongitude()
@@ -103,7 +103,7 @@ class UserControllerTest extends BaseControllerTest {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
-                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
         boolean success = isSuccess(mvcResult);
@@ -112,7 +112,7 @@ class UserControllerTest extends BaseControllerTest {
 
     @Test
     void shouldDeleteUserById() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/users/100"))
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/users/101"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 

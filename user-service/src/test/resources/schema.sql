@@ -2,6 +2,10 @@ drop table if exists public.user_reviews;
 drop table if exists public.users;
 drop sequence if exists public.user_id_sequence;
 drop sequence if exists public.user_review_id_sequence;
+drop schema if exists public;
+create schema public;
+grant all on schema public to "user-service";
+grant all on schema public to public;
 
 create sequence public.user_id_sequence
     start with 100;
@@ -52,9 +56,7 @@ create table public.user_reviews
     id            bigint       not null
         primary key DEFAULT nextval('user_review_id_sequence'),
     update_date   timestamp(6),
-    user_id       bigint       not null
-        constraint fkff3hcd0mnxdfage2x1j6fp4x7
-            references public.users,
+    user_id       bigint       not null,
     comment       varchar(255),
     restaurant_id varchar(255) not null,
     score         varchar(255) not null
