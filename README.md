@@ -81,7 +81,8 @@ Then you can start the User Service `(:8081)`.
 
 ## Running tests
 
-You need to start `test-postgres` service before running the services.
+You need to start `test-postgres` service in `compose.yaml` before running the services.
+It is disabled by default because it is not necessary for running the services.
 
 ![test](./docs/tests.png)
 
