@@ -40,6 +40,7 @@
     - Solr for read operations
 - Add more unit and integration tests for restaurant service application
 - gRPC for communication between services might be a better choice than REST
+- Manhattan distance might be a better choice for distance calculation thus cities usually have a grid-like structure
 
 ![improved architecture](./docs/improved-architecture.png)
 
