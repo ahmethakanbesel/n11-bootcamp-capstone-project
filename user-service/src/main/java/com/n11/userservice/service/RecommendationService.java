@@ -9,21 +9,26 @@ import com.n11.userservice.exceptions.ResourceNotFoundException;
 import com.n11.userservice.service.entityservice.UserEntityService;
 import com.n11.userservice.service.entityservice.UserReviewEntityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "recommendations", cacheManager = "recommendationsCacheManager")
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+
 public class RecommendationService {
     private final UserEntityService userEntityService;
     private final UserReviewEntityService userReviewEntityService;
     private final RestaurantClient restaurantClient;
+    @Autowired
+    private RecommendationService self;
 
     protected static double calculateWeightedScore(double averageUserScore, double distance) {
         if (averageUserScore < 0) {
@@ -52,7 +57,7 @@ public class RecommendationService {
         return recommendation;
     }
 
-    @Cacheable(value = "recommendations", key = "#userId + ';' + #distance", unless = "#result == null or #result.size() == 0")
+    @Cacheable(key = "#userId + ';' + #distance", unless = "#result == null or #result.size() == 0")
     public List<Recommendation> getRecommendedRestaurantsByUserId(Long userId, Double distance) {
         Optional<User> user = userEntityService.findById(userId);
         if (user.isEmpty()) {
@@ -62,7 +67,7 @@ public class RecommendationService {
         return getRecommendedRestaurantsByLocation(user.get().getLatitude(), user.get().getLongitude(), distance);
     }
 
-    @Cacheable(value = "recommendations", key = "#latitude + ';' + #longitude + ';' + #distance", unless = "#result == null or #result.size() == 0")
+    @Cacheable(key = "#latitude + ';' + #longitude + ';' + #distance", unless = "#result == null or #result.size() == 0")
     public List<Recommendation> getRecommendedRestaurantsByLocation(Double latitude, Double longitude, Double distance) {
         if (distance == null) {
             distance = 10.0;
@@ -73,20 +78,23 @@ public class RecommendationService {
             return new ArrayList<>();
         }
 
-        List<Recommendation> recommendations = new ArrayList<>();
+        PriorityQueue<Recommendation> topRecommendations = new PriorityQueue<>(3, Comparator.comparingDouble(Recommendation::getWeightedScore));
 
         for (RestaurantDTO restaurant : restaurants) {
             List<UserReview> reviews = userReviewEntityService.findByRestaurantId(restaurant.id());
 
-            // NOTE: should we take into account the user reviews if there are no reviews?
             double averageUserScore = reviews.stream().mapToDouble(UserReview::toNumericScore).average().orElse(0.0);
 
             Recommendation recommendation = createRecommendationInstance(restaurant, averageUserScore);
-            recommendations.add(recommendation);
+
+            if (topRecommendations.size() < 3) {
+                topRecommendations.offer(recommendation);
+            } else if (recommendation.getWeightedScore() > topRecommendations.peek().getWeightedScore()) {
+                topRecommendations.poll();
+                topRecommendations.offer(recommendation);
+            }
         }
 
-        // return sorted recommendations
-        recommendations.sort((r1, r2) -> Double.compare(r2.getWeightedScore(), r1.getWeightedScore()));
-        return recommendations.subList(0, Math.min(3, recommendations.size()));
+        return new ArrayList<>(topRecommendations);
     }
 }

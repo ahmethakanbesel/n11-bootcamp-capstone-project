@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,7 +23,7 @@ import lombok.Setter;
                 @Index(columnList = "user_id, restaurant_id", unique = true)
         }
 )
-public class UserReview extends BaseEntity {
+public class UserReview extends BaseEntity implements Serializable {
     @Id
     @Column(nullable = false, updatable = false)
     @SequenceGenerator(

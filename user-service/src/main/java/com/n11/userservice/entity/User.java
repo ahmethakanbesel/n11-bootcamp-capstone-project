@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 @Table(
         name = "users"
 )
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
     @Id
     @Column(nullable = false, updatable = false)
     @SequenceGenerator(
