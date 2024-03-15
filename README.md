@@ -41,6 +41,8 @@
 - Add more unit and integration tests for restaurant service application
 - gRPC for communication between services might be a better choice than REST
 
+![improved architecture](./docs/improved-architecture.png)
+
 ## How to run
 
 ### Docker
