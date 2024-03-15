@@ -7,7 +7,7 @@ COPY pom.xml .
 
 RUN mvn dependency:go-offline -B
 
-COPY application.properties src/main/resources/application.properties.docker
+COPY application.properties.docker src/main/resources/application.properties.docker
 COPY src src
 
 RUN rm src/main/resources/application.properties
