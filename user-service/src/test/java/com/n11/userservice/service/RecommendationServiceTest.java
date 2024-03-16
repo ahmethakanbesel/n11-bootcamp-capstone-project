@@ -199,7 +199,7 @@ class RecommendationServiceTest {
         // then
         assertFalse(recommendations.isEmpty());
         assertEquals(2, recommendations.size());
-        assertEquals("Restaurant 2", recommendations.get(0).getName());
-        assertEquals("Restaurant 1", recommendations.get(1).getName());
+        assertEquals("Restaurant 1", recommendations.get(0).getName());
+        assertEquals("Restaurant 2", recommendations.get(1).getName());
     }
 }

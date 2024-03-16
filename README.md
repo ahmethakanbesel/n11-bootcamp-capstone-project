@@ -49,8 +49,8 @@
 ### Docker
 
 All services have their own Dockerfile and can be run using docker-compose.
-Docker VM on host machine should have at least 2GB of RAM and 4 CPUs otherwise you may encounter problems when compiling
-or running services.
+Docker VM on host machine should have at least 4GB of RAM and 4 CPUs otherwise you may encounter problems when compiling
+or running services. Wait until container with name `init-data` shuts down.
 
 ```bash
 docker compose up -d
@@ -59,9 +59,9 @@ docker compose up -d
 After running this command it will download some images and build the services.
 This process may take up to 10 minutes depends on your bandwidth speed.
 
-### Local/IDE
+### Local/IDE (faster)
 
-If you would like to run services locally, open the project with your IDE.
+If you would like to run services locally (without creating Docker containers), open the project with your IDE.
 At first IDEA may ask for importing maven projects, click to yes.
 You need to run some services on Docker:
 
@@ -71,8 +71,16 @@ You need to run some services on Docker:
 - Kafka
 - Zookeeper
 
+You can run them with a different Docker compose file
+
+```bash
+docker compose -f compose-local.yaml up -d
+```
+
 After starting these services, you can start the Restaurant Service `(:8082)`.
 Then you can start the User Service `(:8081)`.
+
+Then wait until `init-data` container shuts down, this will set up Solr schema and add some data to databases.
 
 ### Swagger UI
 
@@ -85,6 +93,8 @@ You need to start `test-postgres` service in `compose.yaml` before running the s
 It is disabled by default because it is not necessary for running the services.
 
 ![test](./docs/tests.png)
+
+In total 53 test cases available.
 
 ## API Preview
 
