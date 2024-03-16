@@ -21,14 +21,10 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "recommendations", cacheManager = "recommendationsCacheManager")
-@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-
 public class RecommendationService {
     private final UserEntityService userEntityService;
     private final UserReviewEntityService userReviewEntityService;
     private final RestaurantClient restaurantClient;
-    @Autowired
-    private RecommendationService self;
 
     protected static double calculateWeightedScore(double averageUserScore, double distance) {
         if (averageUserScore < 0) {
