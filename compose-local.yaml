@@ -43,7 +43,8 @@ services:
       POSTGRES_PASSWORD: service_pass
     ports:
       - "5432:5432"
-    # volumes:
+    volumes:
+      - ./scripts/schema.sql:/docker-entrypoint-initdb.d/init.sql:ro
     #  - postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready", "-d", "db_prod" ]

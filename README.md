@@ -105,3 +105,19 @@ In total 53 test cases available.
 ### User Service
 
 ![user endpoints](./docs/user-service-endpoints.png)
+
+## Build on your machine
+
+```bash
+mvn package -DskipTests
+```
+then
+```bash
+java -jar /target/restaurant-service-latest.jar
+```
+
+or
+
+```bash
+java -jar /target/user-service-latest.jar
+```
