@@ -50,7 +50,7 @@
 
 All services have their own Dockerfile and can be run using docker-compose.
 Docker VM on host machine should have at least 4GB of RAM and 4 CPUs otherwise you may encounter problems when compiling
-or running services. Wait until container with name `init-data` shuts down.
+or running services. **Wait until container with name `init-data` shuts down**.
 
 ```bash
 docker compose up -d
@@ -80,7 +80,7 @@ docker compose -f compose-local.yaml up -d
 After starting these services, you can start the Restaurant Service `(:8082)`.
 Then you can start the User Service `(:8081)`.
 
-Then wait until `init-data` container shuts down, this will set up Solr schema and add some data to databases.
+**Then wait until `init-data` container shuts down**, this will set up Solr schema and add some data to databases.
 
 ### Swagger UI
 
