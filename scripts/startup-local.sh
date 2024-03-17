@@ -6,21 +6,21 @@ until $(curl --output /dev/null --silent --head --fail http://solr:8983/solr/res
     sleep 5
 done
 
-# add field to 'restaurants' schema
-curl -X POST -H 'Content-type:application/json' --data-binary '{
+schema_response=$(curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-field":{
      "name":"location",
      "type":"location",
      "stored":true
    }
-}' http://solr:8983/solr/restaurants/schema
+}' -w "%{http_code}" -o /dev/null http://solr:8983/solr/restaurants/schema)
 
 echo "Set up Solr schema"
 
-until $(curl --output /dev/null --silent --head --fail http://host.docker.internal:8082/actuator/health); do
-    printf '.'
-    sleep 5
-done
+# check if schema response is successful (status 200)
+if [ "$schema_response" -ne 200 ]; then
+    echo "Failed to set up Solr schema. Exiting."
+    exit 1
+fi
 
 # add example restaurant data
 curl -X 'POST' \
